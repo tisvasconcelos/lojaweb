@@ -1,0 +1,24 @@
+<VirtualHost www.lojaweb.com.br:80>i
+        ServerName www.lojaweb.com.br
+        ServerAlias lojaweb.com.br
+        ServerAdmin webmaster@localhost
+
+	ProxyRequests Off
+	ProxyPreserveHost On
+
+	<Proxy *>
+		Order deny,allow
+		Allow from all
+	</Proxy>
+
+	ProxyPass / http://localhost:8080/LojaWeb/
+	ProxyPassReverse / http://localhost:8080/LojaWeb/
+
+        ErrorLog ${APACHE_LOG_DIR}/error_lojaweb.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/access_lojaweb.log combined
+</VirtualHost>

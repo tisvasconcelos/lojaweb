@@ -22,7 +22,7 @@ import br.com.tvasconcelos.validations.UserValidation;
 @RequestMapping("/")
 public class BaseController {
  
-	@RequestMapping(value="/welcome", method = RequestMethod.GET)
+	@RequestMapping(value="welcome", method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
  
 		model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
@@ -32,7 +32,7 @@ public class BaseController {
  
 	}
  
-	@RequestMapping(value="/welcome/{name}", method = RequestMethod.GET)
+	@RequestMapping(value="welcome/{name}", method = RequestMethod.GET)
 	public String welcomeName(@PathVariable String name, ModelMap model) {
  
 		model.addAttribute("message", "Maven Web Project + Spring 3 MVC - " + name);
@@ -40,7 +40,7 @@ public class BaseController {
  
 	}
 	
-	@RequestMapping(value="/contact", method = RequestMethod.GET)
+	@RequestMapping(value="contact", method = RequestMethod.GET)
 	public String contact(ModelMap model) {
 		return "contact";
 	}

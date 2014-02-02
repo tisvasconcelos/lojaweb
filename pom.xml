@@ -57,12 +57,6 @@
 			<version>4.3.0.Final</version>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.springmodules</groupId>
-			<artifactId>spring-modules-validation</artifactId>
-			<version>0.8</version>
-		</dependency> -->
-
 		<dependency><!-- java bytecode processor -->
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -74,6 +68,13 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>

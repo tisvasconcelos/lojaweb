@@ -45,33 +45,31 @@ public class BaseController {
 		return "contact";
 	}
 	
-	@RequestMapping(value="/contact", method = RequestMethod.POST)
+	@RequestMapping(value="contact", method = RequestMethod.POST)
 	public void contactPost(@ModelAttribute("user") User user, ModelMap model) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		Integer userId = null;
+		BindException exception = new BindException(user, "user");
+		UserValidation validation = new UserValidation();
+		validation.validate(user, exception);
 		
-//		BindException exception = new BindException(user, "user");
-//		UserValidation validation = new UserValidation();
-//		validation.validate(userId, exception);
-//		
-//		for (FieldError error : (List<FieldError>) exception.getFieldErrors()) {
-//			System.out.println("invalid value for: '" + error.getField() + "': " + error.getDefaultMessage());
-//		}
-
-		
-		try {
-			transaction = session.beginTransaction();
-			userId = (Integer) session.save(user);
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
+		if (exception.hasErrors()) {
+			List<FieldError> errors = (List<FieldError>) exception.getFieldErrors();
+			model.addAttribute("errors", errors);
+		}else {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Transaction transaction = null;
+			Integer userId = null;
+			
+			try {
+				transaction = session.beginTransaction();
+				userId = (Integer) session.save(user);
+				transaction.commit();
+			} catch (HibernateException e) {
+				transaction.rollback();
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
 		}
-		
-		System.out.println(userId);
 	}
  
 }

@@ -1,6 +1,8 @@
 package br.com.tvasconcelos.controllers;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -42,6 +44,10 @@ public class BaseController {
 	
 	@RequestMapping(value="contact", method = RequestMethod.GET)
 	public String contact(ModelMap model) {
+//		Locale pt_BR = new Locale("pt", "BR");
+//		ResourceBundle resource = ResourceBundle.getBundle("messages_pt_BR.properties", pt_BR);
+//		System.out.println(resource.getString("name.empty"));
+		
 		return "contact";
 	}
 	
